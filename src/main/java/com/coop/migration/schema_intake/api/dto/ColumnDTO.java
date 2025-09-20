@@ -11,10 +11,10 @@ import lombok.*;
 public class ColumnDTO {
 
     // @NotBlank: valida que el campo no venga vacío cuando este DTO se use como entrada.
-    @NotBlank
+    @NotBlank(message = "{column.name.notBlank}")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "{column.type.notBlank}")
     private String type;   // ejemplo: "int", "varchar", "date"
 
     private boolean nullable;

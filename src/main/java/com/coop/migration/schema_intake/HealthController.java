@@ -2,11 +2,15 @@ package com.coop.migration.schema_intake;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.coop.migration.schema_intake.api.dto.TableDTO;
 import com.coop.migration.schema_intake.api.dto.ColumnDTO;
 import com.coop.migration.schema_intake.api.dto.ForeignKeyDTO;
 import com.coop.migration.schema_intake.api.dto.SchemaDTO;
+
+import jakarta.validation.Valid;
 
 import java.util.Arrays;
 import java.util.List;
@@ -90,5 +94,12 @@ public class HealthController {
                 .tables(Arrays.asList(socios, medidores))
                 .foreignKeys(List.of(fk))
                 .build();
+    }
+
+    @PostMapping("/columns")
+    public ColumnDTO createColumn(@Valid @RequestBody ColumnDTO dto) {
+        // Si llega acá, pasó las validaciones (@NotBlank en name y type)
+        // Lo devolvemos tal cual para ver que funcionó.
+        return dto;
     }
 }
